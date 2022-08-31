@@ -21,7 +21,7 @@ class ModHash(HashScheme):
         You have to decide what members to add to the class
         """
         self.__scheme_name = 'Modular_Hash'
-        self.nodeCounter = 0
+        self.nodes = []
 
     def get_name(self):
         return self.__scheme_name
@@ -30,7 +30,9 @@ class ModHash(HashScheme):
         """
         Auxiliary method to print out information about the hash
         """
-        print("Number of nodes: {0}".format(self.nodeCounter))
+        print("Number of nodes: {0}".format(len(self.nodes)))
+        for n in self.nodes:
+            print("\t- {0}".format(n))
 
     def add_node(self, new_node):
         """
@@ -38,7 +40,7 @@ class ModHash(HashScheme):
         need to update Store to react in certain way depending on the
         scheme_name.
         """
-        self.nodeCounter += 1
+        self.nodes.append(new_node)
 
     def remove_node(self, node):
         """
@@ -46,7 +48,7 @@ class ModHash(HashScheme):
         need to update Store to react in certain way depending on the
         scheme_name.
         """
-        self.nodeCounter -= 1
+        self.nodes.remove(node)
 
     def hash(self, value):
         """
@@ -54,6 +56,6 @@ class ModHash(HashScheme):
         """
         # Función de hasheo MD5 con hexdigest y reducida con mod 10000
         hash = (int(hashlib.md5(value.encode()).hexdigest(),16) % 10000)
-        # Se usa el contador de nodos para calcular el modHash
-        modHash = hash % self.nodeCounter
+        # Se usa la cantidad de nodos para calcular el modHash
+        modHash = hash % len(self.nodes)
         return modHash
