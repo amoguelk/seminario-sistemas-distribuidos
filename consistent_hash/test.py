@@ -45,6 +45,7 @@ def run(words):
   """
   Add three nodes to the Store
   """
+  print("\n* * * * Create nodes * * * *\n")
   my_store.add_node("Node 1")
   my_store.add_node("Node 2")
   my_store.add_node("Node 3")
@@ -55,6 +56,7 @@ def run(words):
   """
   Save all words in the Store
   """
+  print("\n* * * * Add resources * * * *\n")
   for word in words:
       my_store.add_resource(word)
   
@@ -65,7 +67,9 @@ def run(words):
   Remove one node from the Store. Stored objects need to be migrated to the
   remaining nodes.
   """
-  my_store.remove_node("Node 1")
+  print("\n* * * * Delete Node 1 * * * *\n")
+  moved = my_store.remove_node("Node 1")
+  print("Data moved: {0} resources\n* * * * * * * *\n".format(moved))
   my_store.dump()
 
 
@@ -73,7 +77,9 @@ def run(words):
   Add the node back to the Store. Objects need to be migrated to conform to the
   Hash scheme.
   """
-  my_store.add_node("Node 1")
+  print("\n* * * * Add Node 1 * * * *\n")
+  moved = my_store.add_node("Node 1")
+  print("Data moved: {0} resources\n* * * * * * * *\n".format(moved))
   my_store.dump()
 
 
