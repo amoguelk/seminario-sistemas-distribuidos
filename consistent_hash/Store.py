@@ -107,7 +107,7 @@ class Store:
                 currentNodes.append(new_node)
 
                 # Empty node dictionary to reorganize
-                self.node = {}
+                self.nodes = {}
                 for key, n in enumerate(currentNodes):
                     self.nodes[key] = Node(n)
                 # Add all resources again
@@ -168,7 +168,7 @@ class Store:
                         currentNodes.append(n.name)
                 
                 # Empty node dictionary to reorganize
-                self.node = {}
+                self.nodes = {}
                 for key, n in enumerate(currentNodes):
                     self.nodes[key] = Node(n)
                 # Add all resources again
